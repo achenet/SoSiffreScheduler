@@ -33,9 +33,15 @@ class Floor:
         print(self.tz)
 
     def make(self):
-        dance = {i:input("combien de gens a "+str(i)+"h?") for i in tz}
+        self.dance = {str(i)+"h":int(input("combien de gens a "+str(i)+"h?")) for i in self.tz}
+        print("juste pour vérifier")
+        print(self.dance)
         
+
+
+
+
 floor = Floor()
 floor.show()
-floor.ask()
+floor.make()
 
