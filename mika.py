@@ -10,8 +10,9 @@ class Vendeur:
 
     def __init__(self):
         self.nom = input("nom?")
-        self.dispo = input("quands est il/elle disponible? entrer une liste s'il vous plait ^_^")
-        self.contract = input("comien d'heures de travaille aujourdui?")
+        self.dispo = list(range(8,20))
+       # input("quands est il/elle disponible? entrer une liste s'il vous plait ^_^")
+        self.contract = int(input("comien d'heures de travaille aujourdui?"))
 
 
     def showinfo(self):
@@ -22,9 +23,9 @@ class Vendeur:
 
 class Floor:
 
-    def __init__(self):
-        self.ouvre = int(input("on ouvre a quelle heure aujour'dui?"))
-        self.ferme = int(input("on ferme a quelle heure aujourdui?"))
+    def __init__(self, ouvre = 8, ferme = 20):
+    #    self.ouvre = int(input("on ouvre a quelle heure aujour'dui?"))
+    #    self.ferme = int(input("on ferme a quelle heure aujourdui?"))
         #we'll now proceed to generate the time zone
         self.tz = list(range(self.ouvre,self.ferme))
         self.needed = []
@@ -36,12 +37,37 @@ class Floor:
         self.dance = {str(i)+"h":int(input("combien de gens a "+str(i)+"h?")) for i in self.tz}
         print("juste pour vérifier")
         print(self.dance)
-        
+        return self.dance
 
 
+def fillMinimum(dancefloor,salesteam):
+    planning = {x:[] for x in sorted dancefloor}
+    for x in planning:
+        if int(re.search(r'\d+',planning[x]).group()) < int(re.search(r'\d+',dancefloor[x])) :
+            
+            addVendeur(dancefloor,salesteam,planning,x)
+    print(saucy)
+    return 0
+
+def addVendeur(dancefloor,salesteam,planning,heure):
+    i = 0
+    while i<len(salesteam) : 
+        if int(re.search(r'\d+',heure).group() in )salesteam[i].dispo:
+            planning(heure).append(Vendeur())
+            return(dancefloor,salesteam,planning,heure)
 
 
 floor = Floor()
 floor.show()
-floor.make()
+
+dancefloor = floor.make()
+salesteam = []
+for i in range(int(input("combien de vendeurs?"))):
+    salesteam.append(Vendeur())
+
+for i in range(len(salesteam)):
+    print(salesteam[i].nom)
+
+fillMinimum(dancefloor,salesteam)
+
 
