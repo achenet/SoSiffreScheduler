@@ -6,6 +6,8 @@
 
 #I guess we should objectify the people O.o
 
+import re
+
 class Vendeur:
 
     def __init__(self):
@@ -23,9 +25,11 @@ class Vendeur:
 
 class Floor:
 
-    def __init__(self, ouvre = 8, ferme = 20):
-    #    self.ouvre = int(input("on ouvre a quelle heure aujour'dui?"))
-    #    self.ferme = int(input("on ferme a quelle heure aujourdui?"))
+    def __init__(self):
+        self.ouvre = 8
+       # int(input("on ouvre a quelle heure aujour'dui?"))
+        self.ferme = 10
+       # int(input("on ferme a quelle heure aujourdui?"))
         #we'll now proceed to generate the time zone
         self.tz = list(range(self.ouvre,self.ferme))
         self.needed = []
@@ -41,21 +45,29 @@ class Floor:
 
 
 def fillMinimum(dancefloor,salesteam):
-    planning = {x:[] for x in sorted dancefloor}
+    planning = {x:[] for x in sorted(dancefloor)}
     for x in planning:
-        if int(re.search(r'\d+',planning[x]).group()) < int(re.search(r'\d+',dancefloor[x])) :
+        if len(planning[x]) < dancefloor[x] :
+        
             
-            addVendeur(dancefloor,salesteam,planning,x)
-    print(saucy)
+            addVendeur(salesteam,planning[x],x)
+    print(planning)
     return 0
 
-def addVendeur(dancefloor,salesteam,planning,heure):
+def addVendeur(salesteam,planninglist,heure):
     i = 0
+    h = int(re.search(r'\d+',heure).group()) 
     while i<len(salesteam) : 
-        if int(re.search(r'\d+',heure).group() in )salesteam[i].dispo:
-            planning(heure).append(Vendeur())
-            return(dancefloor,salesteam,planning,heure)
+        if h in salesteam[i].dispo and salesteam[i].contract > 0:
+            planninglist.append(salesteam[i].nom)
+            #we need to add the person for all hours...
+            #so we'll modify his hours left and time spent working
+            del salesteam[i].dispo[h]
+            salesteam[i].contract -=1 
+            return 0
+        i+=1
 
+    return 0
 
 floor = Floor()
 floor.show()
