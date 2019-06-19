@@ -46,11 +46,14 @@ class Floor:
 
 def fillMinimum(dancefloor,salesteam):
     planning = {x:[] for x in sorted(dancefloor)}
+    i = 0
     for x in planning:
-        if len(planning[x]) < dancefloor[x] :
-        
-            
+        while len(planning[x]) < dancefloor[x] and i < dancefloor[x]:
+            i +=1
+
             addVendeur(salesteam,planning[x],x)
+            print(len(planning[x]))    
+        i = 0
     print(planning)
     return 0
 
@@ -62,7 +65,7 @@ def addVendeur(salesteam,planninglist,heure):
             planninglist.append(salesteam[i].nom)
             #we need to add the person for all hours...
             #so we'll modify his hours left and time spent working
-            del salesteam[i].dispo[h]
+            salesteam[i].dispo.remove(h)
             salesteam[i].contract -=1 
             return 0
         i+=1
