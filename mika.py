@@ -6,6 +6,10 @@
 
 #I guess we should objectify the people O.o
 
+
+
+
+
 import re
 
 class Vendeur:
@@ -79,6 +83,22 @@ def addVendeur(salesteam,planninglist,heure):
 
     return 0
 
+def sortSalesteam(salesteam):
+    #we want to sort the salesteam so the people with the most hours get looked at first
+    #I guess it's time to use some Merge Sort.
+    #first, check to see it it's ordered. 
+    ordered = True
+    for i in range(len(salesteam)-1):    
+        if salesteam[i].contrat < salesteam[i+1].contrat:
+            ordered = False                
+     if !ordered :
+         mergeSort(salesteam,0,len(salesteam))
+
+def mergeSort(list,l,r):
+    mid = (l+r)/2
+
+
+
 floor = Floor()
 floor.show()
 
@@ -86,6 +106,8 @@ dancefloor = floor.make()
 salesteam = []
 for i in range(int(input("combien de vendeurs?"))):
     salesteam.append(Vendeur())
+
+
 
 for i in range(len(salesteam)):
     print(salesteam[i].nom)
