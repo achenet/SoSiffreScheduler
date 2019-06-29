@@ -54,7 +54,7 @@ def fillMinimum(dancefloor,salesteam):
         while len(planning[x]) < dancefloor[x] and i < dancefloor[x]:
 
             addVendeur(salesteam,planning[x],x)
-            print(len(planning[x]))
+       #     print(len(planning[x]))
             i +=1
         i = 0
     print(planning)
