@@ -91,8 +91,8 @@ def sortSalesteam(salesteam):
     for i in range(len(salesteam)-1):    
         if salesteam[i].contrat < salesteam[i+1].contrat:
             ordered = False                
-     if !ordered :
-         mergeSort(salesteam,0,len(salesteam))
+        if not ordered :
+            mergeSort(salesteam,0,len(salesteam))
 
 def mergeSort(list,l,r):
     mid = (l+r)/2
