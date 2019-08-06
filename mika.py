@@ -114,4 +114,6 @@ for i in range(len(salesteam)):
 
 fillMinimum(dancefloor,salesteam)
 
+#testing copy paste in vim across files
+#it works ^_^
 
