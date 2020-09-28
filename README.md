@@ -1,5 +1,8 @@
 # SoSiffreScheduler
-An attempt to automate the process of making schedules for salesteams, which my poor manager at H&M had to do by hand. This is actually a specific case of the Nurse Scheduling Problem.
+An attempt to automate the process of making schedules for salesteams, which my manager at H&M had to do by hand. This is actually a specific case of the Nurse Scheduling Problem.
+
+update 27 Sept 2020
+starting again, with a more Object Oriented approach this time. 
 
 update 1 Sept 2020
 Well I've been completely neglecting this project for a looooong time, and will likely continue to do so for the near future. 
