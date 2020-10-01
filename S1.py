@@ -1,4 +1,4 @@
-#we_are_using_snake_case, not camelCase in this file. 
+#we_are_using_snake_case, notCamelCase in this file. 
 
 
 class Worker:
@@ -71,11 +71,12 @@ class Workforce:
     def __repr__(self):
         return str(self.staff)
 
-    def determine_all_avail(self):
+    def determine_full_staff_avail(self):
         
         for i in self.staff:
-
             i.determine_avail()
+
+
 
 class Week:
 
@@ -89,11 +90,15 @@ class Week:
     def __repr__(self):
         return " ".join(str(d) for d in self.week)
 
-
-
+    def determine_weekly_needs(self):
+        for day in self.week:
+            day.determine_needs()
+    
 
 week51 = Week()
+week51.determine_weekly_needs()
+team = Workforce()
+team.determine_full_staff_avail()
 print(week51)
-
-
+print(team)
 
