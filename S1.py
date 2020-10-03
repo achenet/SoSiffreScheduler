@@ -94,11 +94,11 @@ class Week:
         for day in self.week:
             day.determine_needs()
     
-
-week51 = Week()
-week51.determine_weekly_needs()
-team = Workforce()
-team.determine_full_staff_avail()
-print(week51)
-print(team)
+if __name__ == '__main__':
+    week51 = Week()
+    week51.determine_weekly_needs()
+    team = Workforce()
+    team.determine_full_staff_avail()
+    print(week51)
+    print(team)
 
