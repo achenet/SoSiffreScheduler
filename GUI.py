@@ -7,7 +7,7 @@ import tkinter as tk
 class Window(tk.Tk):
 
     def __init__(self):
-        super().__init__()
+        super().__init__(self)
         self.initialize_window()
 
     def initialize_window(self):
@@ -30,7 +30,7 @@ class Window(tk.Tk):
     def read_entry(self):
         self.show_text = self.entry.get()
         
-        self.output.insert(tk.END,self.show_text)
+#        self.output.insert(tk.END,self.show_text)
     
 
 
