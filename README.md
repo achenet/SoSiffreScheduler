@@ -5,7 +5,10 @@ An attempt to automate the process of making schedules for salesteams, which my 
 update 9 Oct 2020
 run into a rather frustrating bug - when trying to build a simple functionality to display an entered text, run into
 "AttributeError - 'tkinter.tkapp' object has no attribute 'output' ". 
-Which is rather odd, because I have initialized a 'self.output' field.  
+Which is rather odd, because I have initialized a 'self.output' field.
+but I initialized it AFTER refering to it, hence Python's confusion. 
+Fixed. 
+  
 
 update 27 Sept 2020
 starting again, with a more Object Oriented approach this time. 
