@@ -8,14 +8,13 @@ class Window(tk.Tk):
 
     def __init__(self):
         super().__init__()
-        self.title("Scheduler")
-        self.geometry("800x600")
         self.initialize_window()
 
     def initialize_window(self):
-
-        self.quit_button = tk.Button(self,  text = "Quit", command = self.quit)
+        self.title("Scheduler")
+        self.geometry("800x600")
         self.quit_button.grid(row=2, column = 2)
+        self.quit_button = tk.Button(self,  text = "Quit", command = self.quit)
         self.entry = tk.Entry(self)
         self.entry.grid(row = 1, column = 1)
         self.show_text = ""

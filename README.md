@@ -1,6 +1,12 @@
 # SoSiffreScheduler
 An attempt to automate the process of making schedules for salesteams, which my manager at H&M had to do by hand. This is actually a specific case of the Nurse Scheduling Problem.
 
+
+update 9 Oct 2020
+run into a rather frustrating bug - when trying to build a simple functionality to display an entered text, run into
+"AttributeError - 'tkinter.tkapp' object has no attribute 'output' ". 
+Which is rather odd, because I have initialized a 'self.output' field.  
+
 update 27 Sept 2020
 starting again, with a more Object Oriented approach this time. 
 
