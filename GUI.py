@@ -1,6 +1,6 @@
 #this is where we try and make the GUI
 
-import 1S
+import Logic
 
 import tkinter as tk
 
@@ -15,8 +15,13 @@ class Window(tk.Tk):
         self.entry = tk.Entry(self)
         self.entry.grid()
         self.text = ""
-     #   self.enter_text = tk.Button(self.entry, text = "enter", command =self.entry.get())
-     #   self.enter_text.grid()
+        self.enter_text_button = tk.Button(self.entry, text = "enter", command =self.entry.read_entry())
+        self.enter_text.grid()
+        self.enter_text_label = tk.Label(self.entry, text = "Employee Name")
+
+    def read_entry(self):
+        self.text = self.entry.get()
+
     
 
 
