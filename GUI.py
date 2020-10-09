@@ -12,7 +12,6 @@ class Window(tk.Tk):
 
     def initialize_window(self):
         self.title("Scheduler")
-        self.geometry("800x600")
         self.frame1 = tk.Frame(self)
         self.quit_button = tk.Button(self,  text = "Quit", command = self.quit)
         self.entry = tk.Entry(self.frame1)
