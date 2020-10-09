@@ -13,18 +13,19 @@ class Window(tk.Tk):
     def initialize_window(self):
         self.title("Scheduler")
         self.geometry("800x600")
-
+        self.frame1 = tk.Frame(self)
         self.quit_button = tk.Button(self,  text = "Quit", command = self.quit)
-        self.entry = tk.Entry(self)
+        self.entry = tk.Entry(self.frame1)
+        self.frame1.grid(row = 0, column = 0)
         self.quit_button.grid(row=2, column = 2)
-        self.entry.grid(row = 1, column = 1)
+        self.entry.grid(row = 1)
         self.show_text = ""
-        self.output = tk.Text(self) 
-        self.output.grid()
-        self.enter_text_button = tk.Button(self, text = "enter", command =self.read_entry())
-        self.enter_text_button.grid()
-        self.enter_text_label = tk.Label(self.entry, text = "Employee Name")
-        self.enter_text_label.grid()
+        self.output = tk.Text(self.frame1, height = 2, width = 50) 
+        self.output.grid(row = 3)
+        self.enter_text_button = tk.Button(self.frame1, text = "enter", command =self.read_entry())
+        self.enter_text_button.grid(row = 2)
+        self.enter_text_label = tk.Label(self.frame1, text = "Employee Name")
+        self.enter_text_label.grid(row = 0)
 
     
     
