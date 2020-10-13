@@ -21,7 +21,7 @@ class Window(tk.Tk):
         self.show_text = ""
         self.output = tk.Text(self.frame1, height = 2, width = 50) 
         self.output.grid(row = 3)
-        self.enter_text_button = tk.Button(self.frame1, text = "enter", command =self.read_entry())
+        self.enter_text_button = tk.Button(self.frame1, text = "enter", command =self.read_entry)
         self.enter_text_button.grid(row = 2)
         self.enter_text_label = tk.Label(self.frame1, text = "Employee Name")
         self.enter_text_label.grid(row = 0)
@@ -32,7 +32,7 @@ class Window(tk.Tk):
     def read_entry(self):
         self.show_text = self.entry.get()
         
-        self.output.insert(tk.END,self.show_text)
+        self.output.insert(tk.END," " + self.show_text)
     
 
 
