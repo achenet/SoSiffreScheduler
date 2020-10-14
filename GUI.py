@@ -19,6 +19,9 @@ class Window(tk.Tk):
         self.add_worker_button = tk.Button(self.frame1, text = "Add Employee", command = self.add_worker)
         self.add_worker_button.grid(row = 2, column = 1) 
         self.back_to_start_button = tk.Button(self, text = "Back to Start", command = self.back_to_start)
+
+    def add_worker(self):
+        self.frame1.grid_remove()
         self.add_employee_frame = tk.Frame(self)
         self.add_employee_label = tk.Label(self.add_employee_frame, text = "Please Fill in Employee details")
         self.add_employee_label.grid()
@@ -33,9 +36,6 @@ class Window(tk.Tk):
         self.enter_employee_data_button = tk.Button(self.add_employee_frame, text = "Enter Worker Data", command = self.enter_worker_data)
         self.enter_employee_data_button.grid(row = 1, column = 2)        
 
-
-    def add_worker(self):
-        self.frame1.grid_remove()
         self.add_employee_frame.grid(row = 0)
         self.back_to_start_button.grid(row = 2)
 
