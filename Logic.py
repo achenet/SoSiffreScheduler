@@ -58,18 +58,18 @@ class Day:
 class Workforce:
 
     def __init__(self):
-        staff_number = int(input("How many total workers are there?  "))
+#        staff_number = int(input("How many total workers are there?  "))
         self.staff = []
-        for i in range(staff_number):
-            name = input("Please input worker name:  ")
-            contract = int(input("Please enter number of hours in "+ name + "'s contract:   "))
-            avails = []
-            self.staff.append(Worker(name,contract,avails))
+ #       for i in range(staff_number):
+ #           name = input("Please input worker name:  ")
+ #           contract = int(input("Please enter number of hours in "+ name + "'s contract:   "))
+ #           avails = []
+ #           self.staff.append(Worker(name,contract,avails))
 
 
 
     def __repr__(self):
-        return str(self.staff)
+        return "Staff: " + str(self.staff)
 
     def determine_full_staff_avail(self):
         
