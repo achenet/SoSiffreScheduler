@@ -8,6 +8,7 @@ class Window(tk.Tk):
 
     def __init__(self):
         tk.Tk.__init__(self)
+        self.title("Scheduler")
         self.initialize_workforce()
         self.initialize_window()
 
@@ -15,7 +16,6 @@ class Window(tk.Tk):
     
     
     def initialize_window(self):
-        self.title("Scheduler")
         self.show_frame1() 
         self.quit_button = tk.Button(self,  text = "Quit", command = self.quit)
         self.quit_button.grid(row=2, column = 2)
@@ -74,7 +74,7 @@ class Window(tk.Tk):
         self.workforce_frame.grid()
         self.workforce_label = tk.LabelFrame(self.workforce_frame, text = "Workforce")
         self.workforce_label.grid()
-        self.workforce_display = tk.Label(self.workforce_frame, text = "\n ".join(str(i) for i in self.workforce.staff))
+        self.workforce_display = tk.Label(self.workforce_frame, text = "Current staff:\n"+"\n ".join(str(i) for i in self.workforce.staff))
         self.workforce_display.grid()
 
 
