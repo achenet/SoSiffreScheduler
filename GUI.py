@@ -77,6 +77,25 @@ class Window(tk.Tk):
         self.workforce_display = tk.Label(self.workforce_frame, text = "Current staff:\n"+"\n ".join(str(i) for i in self.workforce.staff))
         self.workforce_display.grid()
 
+        self.display_and_mod_workforce()
+
+    def display_and_mod_workforce(self):
+        self.workforce_frame = tk.Frame(self)
+        self.workforce_frame.grid()
+        for worker in self.workforce.staff:
+            worker_button = tk.Button(self.workforce_frame, text = "Modify "+ worker.name + "'s availiblilities", 
+                    command = self.modify_worker_avail(worker))
+            worker_button.grid()
+
+
+    def modify_worker_avail(self,worker):
+        self.avail_frame = tk.Frame(self)
+        self.avail_mb = tk.Menubutton(self.avail_frame, text = worker.name +"'s availibilites")
+        self.avail_menu = tk.Menu(self.avail_mb,tearoff = 0)
+        self.avail_mb["menu"] = self.avail_menu
+        for i in range(8,21):
+            self.avail_menu.add_checkbutton(label = str(i), variable = worker.avails.avail_dict[i] )
+        self.avail_frame.grid()
 
 
 

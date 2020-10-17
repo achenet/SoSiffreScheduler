@@ -1,5 +1,17 @@
 #we_are_using_snake_case, notCamelCase in this file. 
 
+class AvailibilityList:
+
+    def __init__(self,worker):
+        self.worker = worker
+        self.avail_dict = { i : False for i in range(8,21) }
+
+    def __repr__(self):
+        repr_list = []
+        for i in self.avail_dict:
+            if self.avail_dict[i] is not False:
+                repr_list.append(i)
+        return str(repr_list)
 
 class Worker:
 
@@ -10,7 +22,7 @@ class Worker:
     def __init__(self,name: str,contract: int,avails: list):
        self.name = name
        self.contract = contract
-       self.avails = avails
+       self.avails = AvailibilityList(self)
 
 
     def __repr__(self):
@@ -41,7 +53,7 @@ class Day:
     #we'll start by fixing the available times, then make it modifiable 
 
     def __init__(self,name):
-        self.timetable = { i : [0,[]] for i in range(8,20) }
+        self.timetable = { i : [0,[]] for i in range(8,21) }
         self.name = name
 
     def __repr__(self):
