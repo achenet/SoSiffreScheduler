@@ -1,32 +1,23 @@
 #we_are_using_snake_case, notCamelCase in this file. 
 
-class AvailibilityList:
-
-    def __init__(self,worker):
-        self.worker = worker
-        self.avail_dict = { i : False for i in range(8,21) }
-
-    def __repr__(self):
-        repr_list = []
-        for i in self.avail_dict:
-            if self.avail_dict[i] is not False:
-                repr_list.append(i)
-        return str(repr_list)
-
 class Worker:
 
     #name : worker name
     #contract: number of hours per day (per week?)
     #avails: list of hours during which the worker is available
 
-    def __init__(self,name: str,contract: int,avails: list):
+    def __init__(self,name: str,contract: int,avail: dict =  { i : False for i in range(8,21)}):
        self.name = name
        self.contract = contract
-       self.avails = AvailibilityList(self)
+       self.avail = avail
 
 
     def __repr__(self):
-        return self.name + ", " + str(self.contract) +" hour contract, available " + str(self.avails)
+        repr_list = []
+        for i in self.avail:
+            if self.avail[i] is True:
+                repr_list.append(i)
+        return self.name + ", " + str(self.contract) +" hour contract, available " + str(repr_list)
 
     #determine worker's availibilities
     def determine_avail(self,avail = None):
@@ -62,10 +53,23 @@ class Day:
     def print_time_table(self):
         print(str(self.timetable))
 
-    def determine_needs(self):
-        for i in self.timetable:
-           self.timetable[i][0] = int(input("How many workers are need at hour " + str(i) + "?  ")) 
+    def determine_needs(self,preset_needs: list = None):
+        if preset_needs:
+            self.update_needs(preset_needs)
+        
+        else: 
+            for i in self.timetable:
+                self.timetable[i][0] = int(input("How many workers are need at hour " + str(i) + "?  ")) 
 
+    def update_needs(self, new_needs: list):
+        if len(new_needs) != len(self.timetable):
+            raise ValueError("New timetable is not the correct length, need length "+ str(len(self.timetable)) + " but have length "
+                    + str(len(new_needs)))
+        j = 0
+        for i in self.timetable:
+            self.timetable[i][0] = new_needs[j]
+            j += 1
+        
 
 class Workforce:
 
@@ -102,13 +106,19 @@ class Week:
     def __repr__(self):
         return " ".join(str(d) for d in self.week)
 
-    def determine_weekly_needs(self):
-        for day in self.week:
-            day.determine_needs()
+    def determine_weekly_needs(self, preset_needs: list = None):
+        if preset_needs:
+            i = 0
+            for day in self.week:
+                day.determine_needs(preset_needs[i])
+                i += 1
+        else:
+            for day in self.week:
+                day.determine_needs()
     
 if __name__ == '__main__':
     week51 = Week()
-    week51.determine_weekly_needs()
+    week51.determine_weekly_needs([[i for i in range(8,21)]for j in range(7)])
     team = Workforce()
     team.determine_full_staff_avail()
     print(week51)
