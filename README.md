@@ -1,6 +1,11 @@
 # SoSiffreScheduler
 An attempt to automate the process of making schedules for salesteams, which my manager at H&M had to do by hand. This is actually a specific case of the Nurse Scheduling Problem.
 
+update 2 Nov 2020
+The GUI is currently not functional, and I have decided to momentarily stop working on it at the moment as I am stumped by the current bug
+The Logic portion of the program is capable of more or less correctly filling out a day, although the worker availibilites will have to 
+be modified to be viewed as a weekly table, not a daily one. 
+
 
 update 9 Oct 2020
 run into a rather frustrating bug - when trying to build a simple functionality to display an entered text, run into

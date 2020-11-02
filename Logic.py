@@ -22,7 +22,7 @@ class Worker:
     #determine worker's availibilities
     def determine_avail(self,avail = None):
         if avail is not None:
-            avails = avail
+            self.avail = avail
         else:
             looking = True
             while looking :
@@ -34,9 +34,10 @@ class Worker:
                 if not h > 0:
                     looking = False
                 else:
-                    self.avails.append(h)
-            self.avails.sort()
-
+                    self.avail.append(h)
+            self.avail.sort()
+            
+        
 
 
 class Day:
@@ -69,7 +70,27 @@ class Day:
         for i in self.timetable:
             self.timetable[i][0] = new_needs[j]
             j += 1
-        
+
+    #probably one of the least elegant ways to solve this problem, but hey
+    #it's something.
+    def fill_timetable(self, workforce):
+        staff = workforce.staff
+        staff.sort(key = lambda x : len(x.avail))
+        for hour in self.timetable:
+            still_workers = True
+            while self.timetable[hour][0] > 0 and still_workers:
+                for worker in staff:
+                    if worker.avail[hour]:
+                        still_workers = True
+                        self.timetable[hour][1].append(worker)
+                        worker.avail[hour] = False
+                        self.timetable[hour][0] -= 1
+                still_workers = False
+                    
+       
+        if False:
+            raise RuntimeError("could not fill out timetable properly")
+
 
 class Workforce:
 
@@ -120,7 +141,12 @@ if __name__ == '__main__':
     week51 = Week()
     week51.determine_weekly_needs([[i for i in range(8,21)]for j in range(7)])
     team = Workforce()
-    team.determine_full_staff_avail()
-    print(week51)
-    print(team)
+    team.staff.append(Worker("Eric",35,{ i: True for i in range(8,21)}))
+    team.staff.append(Worker("Margot",35,{ i: i > 12 for i in range(8,21)}))
+    team.staff.append(Worker("Pauline",35,{ i: i < 13 for i in range(8,21)}))
+
+    for day in week51.week:
+        day.fill_timetable(team)
+        print(day)
+
 
