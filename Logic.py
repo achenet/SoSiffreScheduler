@@ -6,7 +6,8 @@ class Worker:
     #contract: number of hours per day (per week?)
     #avails: list of hours during which the worker is available
 
-    def __init__(self,name: str,contract: int,avail: dict =  { i : False for i in range(8,21)}):
+    def __init__(self,name: str,contract: int,avail: dict = { day : { i : False for i in range(8,21)} for day in 
+        ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"] } ):
        self.name = name
        self.contract = contract
        self.avail = avail
@@ -73,17 +74,20 @@ class Day:
 
     #probably one of the least elegant ways to solve this problem, but hey
     #it's something.
+    #it would actually be wiser to make a local copy of each worker's availibilites
     def fill_timetable(self, workforce):
         staff = workforce.staff
         staff.sort(key = lambda x : len(x.avail))
+
         for hour in self.timetable:
             still_workers = True
             while self.timetable[hour][0] > 0 and still_workers:
                 for worker in staff:
-                    if worker.avail[hour]:
+                    avail = worker.avail
+                    if avail[hour]:
                         still_workers = True
                         self.timetable[hour][1].append(worker)
-                        worker.avail[hour] = False
+                        avail[hour] = False
                         self.timetable[hour][0] -= 1
                 still_workers = False
                     
