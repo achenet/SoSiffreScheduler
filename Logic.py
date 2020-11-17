@@ -1,6 +1,8 @@
 #we_are_using_snake_case, notCamelCase in this file. 
 
 weekdays = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+import copy
+
 
 class Worker:
 
@@ -15,13 +17,19 @@ class Worker:
        self.avail = avail
 
 
-    def __repr__(self):
-        repr_list = []
-        for i in self.avail:
-            for j in self.avail[i]:
-                if self.avail[i][j] is True:
-                    repr_list.append((i,j))
-        return self.name + ", " + str(self.contract) +" hour contract, available " + str(repr_list)
+    def __repr__(self, print_contract = False ,print_avails = False ):
+        out = self.name
+        if print_contract:
+            out += "  " + str(self.contract)
+        if print_avails:
+            repr_list = []
+            for i in self.avail:
+                for j in self.avail[i]:
+                    if self.avail[i][j] is True:
+                        repr_list.append((i,j))
+            out += " available: " + str(repr_list)
+        return out
+
 
     #determine worker's availibilities
     def determine_avail(self,avail = None):
@@ -53,7 +61,8 @@ class Day:
         self.name = name
 
     def __repr__(self):
-        return self.name + "\n " + " \n ".join(str(i) +  str(self.timetable[i]) for i in self.timetable) + "\n \n" 
+        return self.name + "\n " + " \n ".join(str(i) +"h: " +  str(self.timetable[i][0]) +" needed, currently have " + 
+                ", ".join(worker.name for worker in self.timetable[i][1])  for i in self.timetable) + "\n \n" 
 
     def print_time_table(self):
         print(str(self.timetable))
@@ -81,21 +90,19 @@ class Day:
     def fill_timetable(self, workforce):
         staff = workforce.staff
         staff.sort(key = lambda x : len(x.avail))
+        error = False
+        day = self.name
 
-        for hour in self.timetable:
-            still_workers = True
-            while self.timetable[hour][0] > 0 and still_workers:
-                for worker in staff:
-                    avail = worker.avail
-                    if avail[hour]:
-                        still_workers = True
+        for worker in staff:
+            avail = worker.avail
+            if day in avail:
+
+                for hour in avail[day]:
+                    if avail[day][hour]:
                         self.timetable[hour][1].append(worker)
-                        avail[hour] = False
-                        self.timetable[hour][0] -= 1
-                still_workers = False
-                    
-       
-        if False:
+                        self.timetable[hour][0] -=1
+
+        if error:
             raise RuntimeError("could not fill out timetable properly")
 
 
