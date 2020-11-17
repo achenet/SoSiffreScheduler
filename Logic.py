@@ -1,5 +1,7 @@
 #we_are_using_snake_case, notCamelCase in this file. 
 
+weekdays = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+
 class Worker:
 
     #name : worker name
@@ -16,8 +18,9 @@ class Worker:
     def __repr__(self):
         repr_list = []
         for i in self.avail:
-            if self.avail[i] is True:
-                repr_list.append(i)
+            for j in self.avail[i]:
+                if self.avail[i][j] is True:
+                    repr_list.append((i,j))
         return self.name + ", " + str(self.contract) +" hour contract, available " + str(repr_list)
 
     #determine worker's availibilities
@@ -145,9 +148,9 @@ if __name__ == '__main__':
     week51 = Week()
     week51.determine_weekly_needs([[i for i in range(8,21)]for j in range(7)])
     team = Workforce()
-    team.staff.append(Worker("Eric",35,{ i: True for i in range(8,21)}))
-    team.staff.append(Worker("Margot",35,{ i: i > 12 for i in range(8,21)}))
-    team.staff.append(Worker("Pauline",35,{ i: i < 13 for i in range(8,21)}))
+    team.staff.append(Worker("Eric",35,{ d : { i: True for i in range(8,21)} for d in weekdays[:6] }  ))
+    team.staff.append(Worker("Margot",35,{d : { i: i > 12 for i in range(8,21)} for d in weekdays[2:] } ))
+    team.staff.append(Worker("Pauline",35,{ d: {i: i < 13 for i in range(8,21)} for d in weekdays[1:5] }))
 
     for day in week51.week:
         day.fill_timetable(team)
